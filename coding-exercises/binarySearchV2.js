@@ -8,9 +8,9 @@ console.log(binarySearch(theirSample1, 33)); // should be 3
 
 function binarySearch(array, target) {
 
-    return findMatch(0, array.length-1, target, array);
+    return findMatch(0, array.length-1);
 
-    function findMatch(L, R, target, array) {
+    function findMatch(L, R) {
         console.log("> L: " + L + "\n> R: " + R);
         if (L >= R) {
             if (array[L] === target) {
@@ -25,9 +25,9 @@ function binarySearch(array, target) {
             console.log('Found the target! Returning midpoint ' + midpoint);
             return midpoint;
         } else if (array[midpoint] > target) {
-            return findMatch(L, midpoint, target, array);
+            return findMatch(L, midpoint);
         } else { // midpoint val < target
-            return findMatch(midpoint, R, target, array);
+            return findMatch(midpoint, R);
         }
     }
 
