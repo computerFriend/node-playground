@@ -4,11 +4,11 @@ let mySample = [1,2,3,4,5,6,7],
     theirSample1 = [0, 1, 21, 33, 45, 45, 61, 71, 72, 73];
 
 // console.log(binarySearch(mySample, 2)); // should be 1
-console.log(binarySearch(theirSample1, 33));
+console.log(binarySearch(theirSample1, 33)); // should be 3
 
 function binarySearch(array, target) {
 
-    findMatch(0, array.length-1, target, array);
+    return findMatch(0, array.length-1, target, array);
 
     function findMatch(L, R, target, array) {
         console.log("> L: " + L + "\n> R: " + R);
@@ -23,12 +23,11 @@ function binarySearch(array, target) {
         console.log('midpoint: ', midpoint);
         if (array[midpoint] === target) {
             console.log('Found the target! Returning midpoint ' + midpoint);
-            console.log('typeof midpoint: ' + typeof midpoint);
             return midpoint;
         } else if (array[midpoint] > target) {
-            findMatch(L, midpoint, target, array);
+            return findMatch(L, midpoint, target, array);
         } else { // midpoint val < target
-            findMatch(midpoint, R, target, array);
+            return findMatch(midpoint, R, target, array);
         }
     }
 
