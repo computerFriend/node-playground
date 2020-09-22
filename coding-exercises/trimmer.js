@@ -4,14 +4,6 @@
 var spaceyString = '    hello, trim me please         ';
 console.log("*" + trimmerV2 (spaceyString) + "*")
 
-function trimmerV1(inputString) {
-    var newStrArr = [];
-    inputString.split('').forEach(function(char) {
-        if (char.charCodeAt(0) !== 32) newStrArr.push(char);
-    });
-    return newStrArr.join('');
-}
-
 function trimmerV2(inputString) {
     var startIndex = findNonSpaceIndex(inputString,0,1);
     var stopIndex = findNonSpaceIndex(inputString, inputString.length-1, -1) + 1;

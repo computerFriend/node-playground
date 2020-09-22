@@ -12,6 +12,7 @@ function capitalizeFirstLetterSentence(inputString) {
     var wordArray = inputString.split(' ');
     console.log('Word array:\n', wordArray);
 
+    // expanded version
     // var newStr = '';
     // wordArray.forEach(function(word) {
     //     newStr += capitalizeFirst(word) + ' ';

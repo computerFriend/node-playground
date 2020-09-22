@@ -1,3 +1,5 @@
+// Boilerplate controller, should you ever need it.
+
 let app = require('express')(),
   fs = require('fs'),
   https = require('https');
@@ -16,9 +18,6 @@ module.exports.init = function(mainContext) {
   config = context.config;
   dbManager = context.dbManager;
   encrypter = context.encrypter;
-  winnerFinder = context.winnerFinder;
-
-
 
   PORT = parseInt(config.PORT, 10) || 8000;
   LOCAL = config.LOCAL || false;

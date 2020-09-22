@@ -1,16 +1,9 @@
 // Reverse a string: 'Hello World' ---> 'dlroW olleH'
-var myboi = 'Hello World';
-console.log(reverserV2(myboi));
-
-
-function reverserV1(inputString) {
-    var reversedStrArr = [], strLength = inputString.length;
-    for (var i=0; i<strLength; i++) {
-        var newIndex = strLength - 1 - i;
-        reversedStrArr[newIndex] = inputString[i];
-    }
-    return reversedStrArr.join('');
-}
+var myboi = 'Hello World!';
+var expected = '!dlroW olleH'
+var result = reverserV2(myboi);
+console.log(result);
+console.log(result===expected);
 
 function reverserV2(inputString) {
     var reversedStrArr = new Array(inputString.length);
@@ -20,4 +13,13 @@ function reverserV2(inputString) {
     }
     return reversedStrArr.join('');
 
+}
+
+function reverserV1(inputString) {
+    var reversedStrArr = [], strLength = inputString.length;
+    for (var i=0; i<strLength; i++) {
+        var newIndex = strLength - 1 - i;
+        reversedStrArr[newIndex] = inputString[i];
+    }
+    return reversedStrArr.join('');
 }
