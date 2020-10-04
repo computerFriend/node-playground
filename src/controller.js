@@ -2,16 +2,16 @@
 
 let app = require('express')(),
   fs = require('fs'),
-  https = require('https');
+  https = require('https'),
+  http = require('http');
 
 let context,
   config,
   PORT,
   LOCAL,
+  PRIVATE,
   httpsServer,
   HEALTHCHECK = "/admin/healthcheck";
-
-var cacheData = [];
 
 module.exports.init = function(mainContext) {
   context = mainContext;
@@ -21,21 +21,55 @@ module.exports.init = function(mainContext) {
 
   PORT = parseInt(config.PORT, 10) || 8000;
   LOCAL = config.LOCAL || false;
+  PRIVATE = config.PRIVATE || false;
+
 
   if (config.HEALTHCHECK) HEALTHCHECK = config.HEALTHCHECK;
 
+  // if you want an HTTPS cert
   if (!LOCAL) {
-    var privateKey = fs.readFileSync('/etc/node/privkey1.pem');
-    var certificate = fs.readFileSync('/etc/node/cert1.pem');
+    if (PRIVATE) {
+      var privateKey = fs.readFileSync('/etc/node/privkey1.pem');
+      var certificate = fs.readFileSync('/etc/node/cert1.pem');
+  
+      httpsServer = https.createServer({
+        key: privateKey,
+        cert: certificate
+      }, app);
 
-    httpsServer = https.createServer({
-      key: privateKey,
-      cert: certificate
-    }, app);
+    } else {
+      httpsServer = https.createServer({}, app);
+    }
+    
   }
 
 
   app.use(rawBodyParser);
+
+  // goPuff interview code 
+  app.get('/', function (req, res) {
+    // grab stem from query
+    let stem = req.query.stem;
+
+    // filter words based on dictionary.. if the dictionary never changes, would be better to cache the dictionary
+    // TODO: cache dictionary, update it on a timer (making assumptions about dictionary updates)
+
+    // STUB
+    const allWords = ['apple', 'apples', 'applesauce', 'bees', 'crackers'];
+
+    // request validation
+    if (stem === '') res.send(allWords); // send back all words if stem is an empty string
+    if (!stem) res.status(400).send('No query specified'); // reject if stem DNE
+
+   
+    const filteredStems = allWords.filter(word => word.startsWith(stem)); // brute force... O(N) complexity
+    if (filteredStems.length > 0) {
+      res.send({data: filteredStems});
+    } else {
+      res.status(404).end();
+    }
+
+  })
 
   app.all('*', function(req, res) {
     res.end('Default Hello');

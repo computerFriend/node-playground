@@ -1,4 +1,5 @@
 {
   "LOCAL": true,
-  "PORT": 443
+  "PORT": 3000,
+  "PRIVATE": false
 }
