@@ -1,0 +1,2 @@
+# A Dumping Ground
+PSA: This entire repo is essentially a dumping ground for miscellaneous scripts, boilerplate code, coding exercises, & more.  The way I have this project structured is not indicative of my normal workflow & organization, nor are my commits.  This is a literal trash pile, and if I weren't so cheap I'd make it a private repo. (But I am very, very cheap...)

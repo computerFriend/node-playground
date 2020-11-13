@@ -46,30 +46,10 @@ module.exports.init = function(mainContext) {
 
   app.use(rawBodyParser);
 
-  // goPuff interview code 
   app.get('/', function (req, res) {
-    // grab stem from query
-    let stem = req.query.stem;
-
-    // filter words based on dictionary.. if the dictionary never changes, would be better to cache the dictionary
-    // TODO: cache dictionary, update it on a timer (making assumptions about dictionary updates)
-
-    // STUB
-    const allWords = ['apple', 'apples', 'applesauce', 'bees', 'crackers'];
-
-    // request validation
-    if (stem === '') res.send(allWords); // send back all words if stem is an empty string
-    if (!stem) res.status(400).send('No query specified'); // reject if stem DNE
-
-   
-    const filteredStems = allWords.filter(word => word.startsWith(stem)); // brute force... O(N) complexity
-    if (filteredStems.length > 0) {
-      res.send({data: filteredStems});
-    } else {
-      res.status(404).end();
-    }
-
-  })
+      // STUB
+      res.send('boop');
+  });
 
   app.all('*', function(req, res) {
     res.end('Default Hello');

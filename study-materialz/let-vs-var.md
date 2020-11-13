@@ -17,7 +17,7 @@ function waitAndSee() {
 ```
 
 ### Answer:
-It's because "let" is block-scope while "var" is function-scoped.  If you view each iteration of the loop as its own new "block," it's easier to see why 'let' stores each value, while var dominates the earth with its latest value.  "let" sees each iteration as one separate env (binds to each scope separately), while var binds only once -- and it's to the _entire_ function.
+It's because "let" is block-scoped while "var" is function-scoped.  If you view each iteration of the loop as its own new "block," it's easier to see why 'let' stores each value, while var dominates the earth with its latest value.  "let" sees each iteration as one separate env (binds to each scope separately), while var binds only once -- and it's to the _entire_ function.
 
 Said another way: you could say the "let" _looks at the little scopes_, while _var will go far_.  See what I did there? It's a rhyme, that means it's true.
 
